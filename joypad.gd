@@ -7,7 +7,7 @@ onready var duration = $VBoxContainer/Vibration/Duration
 onready var length = $VBoxContainer/Stick/Length
 onready var length2 = $VBoxContainer/Stick/Length2
 onready var set = $VBoxContainer/HBoxContainer2/Set
-
+onready var duration_label = $VBoxContainer/Vibration/Label
 
 func _ready():
 	$VBoxContainer/Vibration/Duration.grab_focus()
@@ -48,3 +48,7 @@ func _on_Vibrate_pressed():
 
 func _on_Stop_pressed():
 	Input.stop_joy_vibration(0)
+
+
+func _on_Duration_value_changed(value):
+	duration_label.text = "%.2f sec" % value

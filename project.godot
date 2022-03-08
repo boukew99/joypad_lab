@@ -12,12 +12,13 @@ config_version=4
 
 config/name="joypad_lab"
 run/main_scene="res://joypad.tscn"
+run/low_processor_mode=true
 config/icon="res://icon.png"
 
 [display]
 
-window/size/width=512
-window/size/height=300
+window/size/width=212
+window/size/height=306
 window/size/resizable=false
 
 [input]

@@ -1,0 +1,179 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://joypad.gd" type="Script" id=3]
+
+[sub_resource type="InputEventAction" id=1]
+action = "set"
+
+[sub_resource type="ShortCut" id=2]
+shortcut = SubResource( 1 )
+
+[sub_resource type="InputEventAction" id=3]
+action = "vibrate"
+
+[sub_resource type="ShortCut" id=4]
+shortcut = SubResource( 3 )
+
+[sub_resource type="InputEventAction" id=5]
+action = "stop"
+
+[sub_resource type="ShortCut" id=6]
+shortcut = SubResource( 5 )
+
+[node name="JoypadLab" type="PanelContainer"]
+margin_right = 212.0
+margin_bottom = 176.0
+script = ExtResource( 3 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 205.0
+margin_bottom = 299.0
+
+[node name="Connection" type="CheckBox" parent="VBoxContainer"]
+margin_right = 198.0
+margin_bottom = 24.0
+disabled = true
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+margin_top = 28.0
+margin_right = 198.0
+margin_bottom = 32.0
+
+[node name="Stick" type="GridContainer" parent="VBoxContainer"]
+margin_top = 36.0
+margin_right = 198.0
+margin_bottom = 68.0
+columns = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Stick"]
+margin_right = 97.0
+margin_bottom = 14.0
+text = "left (stick)"
+
+[node name="Label2" type="Label" parent="VBoxContainer/Stick"]
+margin_left = 101.0
+margin_right = 198.0
+margin_bottom = 14.0
+text = "right "
+
+[node name="Length" type="ProgressBar" parent="VBoxContainer/Stick"]
+margin_top = 18.0
+margin_right = 97.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+max_value = 1.0
+
+[node name="Length2" type="ProgressBar" parent="VBoxContainer/Stick"]
+margin_left = 101.0
+margin_top = 18.0
+margin_right = 198.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+max_value = 1.0
+
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer"]
+margin_top = 72.0
+margin_right = 198.0
+margin_bottom = 76.0
+
+[node name="HBoxContainer" type="GridContainer" parent="VBoxContainer"]
+margin_top = 80.0
+margin_right = 198.0
+margin_bottom = 112.0
+columns = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
+margin_right = 97.0
+margin_bottom = 14.0
+text = "strong (trigger)"
+
+[node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer"]
+margin_left = 101.0
+margin_right = 198.0
+margin_bottom = 14.0
+text = "weak"
+
+[node name="Strong" type="ProgressBar" parent="VBoxContainer/HBoxContainer"]
+margin_top = 18.0
+margin_right = 97.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+max_value = 1.0
+
+[node name="Weak" type="ProgressBar" parent="VBoxContainer/HBoxContainer"]
+margin_left = 101.0
+margin_top = 18.0
+margin_right = 198.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+max_value = 1.0
+
+[node name="HSeparator3" type="HSeparator" parent="VBoxContainer"]
+margin_top = 116.0
+margin_right = 198.0
+margin_bottom = 120.0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 124.0
+margin_right = 198.0
+margin_bottom = 144.0
+
+[node name="Set" type="Button" parent="VBoxContainer/HBoxContainer2"]
+margin_right = 32.0
+margin_bottom = 20.0
+toggle_mode = true
+shortcut = SubResource( 2 )
+text = "Set"
+
+[node name="Vibrate" type="Button" parent="VBoxContainer/HBoxContainer2"]
+margin_left = 36.0
+margin_right = 93.0
+margin_bottom = 20.0
+shortcut = SubResource( 4 )
+text = "Vibrate"
+
+[node name="Stop" type="Button" parent="VBoxContainer/HBoxContainer2"]
+margin_left = 97.0
+margin_right = 137.0
+margin_bottom = 20.0
+shortcut = SubResource( 6 )
+text = "Stop"
+
+[node name="Vibration" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 148.0
+margin_right = 198.0
+margin_bottom = 164.0
+
+[node name="Label" type="Label" parent="VBoxContainer/Vibration"]
+margin_top = 1.0
+margin_right = 55.0
+margin_bottom = 15.0
+text = "Duration"
+
+[node name="Duration" type="HSlider" parent="VBoxContainer/Vibration"]
+margin_left = 59.0
+margin_right = 198.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+min_value = 0.05
+max_value = 3.0
+step = 0.05
+value = 0.15
+
+[node name="HSeparator4" type="HSeparator" parent="VBoxContainer"]
+margin_top = 168.0
+margin_right = 198.0
+margin_bottom = 172.0
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+margin_top = 176.0
+margin_right = 198.0
+margin_bottom = 292.0
+text = "Note: Not every hardware is compatible with long effect durations; it is recommended to restart an effect if it has to be played for more than a few seconds.
+"
+autowrap = true
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/Vibrate" to="." method="_on_Vibrate_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/Stop" to="." method="_on_Stop_pressed"]

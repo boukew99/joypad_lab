@@ -29,8 +29,8 @@ func _unhandled_input(event):
 	var stick2 = Input.get_vector("left2", "right2", "down2", "up2")
 	
 	# 1 + log(0-1) = natural deadzone at 0.3678793 and natural (muscle) motor curve
-	stick *= clamp(1 + log(stick.length()), 0, 1)
-	stick2 *= clamp(1 + log(stick2.length()), 0, 1)
+	stick *= max(1 + log(stick.length()), 0)
+	stick2 *= max(1 + log(stick2.length()), 0)
 	
 	length.value = stick.length()
 	length2.value = stick2.length()

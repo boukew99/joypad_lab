@@ -9,6 +9,8 @@ onready var length2 = $VBoxContainer/Stick/Length2
 onready var set = $VBoxContainer/HBoxContainer2/Set
 onready var duration_label = $VBoxContainer/Vibration/Label
 
+var responded = false
+
 func _ready():
 	$VBoxContainer/Vibration/Duration.grab_focus()
 	Input.connect("joy_connection_changed", self, "_on_joy_connection_changed")
@@ -35,6 +37,12 @@ func _unhandled_input(event):
 	length.value = stick.length()
 	length2.value = stick2.length()
 	
+	if length.value == 0:
+		responded = false
+	elif length.value > 0 and not responded:
+		Input.start_joy_vibration(0, 0.1, 0, 0.1)
+		responded = true
+		
 	if not set.pressed:
 		if event.is_action("strong_vibration"):
 			strong.value = 1 + log(Input.get_action_strength("strong_vibration")) 
